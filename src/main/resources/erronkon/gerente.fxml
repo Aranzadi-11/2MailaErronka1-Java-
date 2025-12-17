@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="erronkon.GerenteController"
+      spacing="20" alignment="CENTER"
+      prefWidth="1200" prefHeight="800">
+
+    <padding>
+        <Insets top="20" bottom="20" left="20" right="20"/>
+    </padding>
+
+    <!-- Logo -->
+    <ImageView fitWidth="200" fitHeight="200" preserveRatio="true">
+        <image>
+            <Image url="@images/ABEJ_logo.png"/>
+        </image>
+    </ImageView>
+
+    <Label text="ABEJ - Langileen kudeaketa" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <!-- Tabla más grande -->
+    <TableView fx:id="table" prefHeight="500" prefWidth="1100">
+        <columns>
+            <TableColumn fx:id="colIzena" text="Nombre" prefWidth="300"/>
+            <TableColumn fx:id="colErabiltzailea" text="Usuario" prefWidth="250"/>
+            <TableColumn fx:id="colRola" text="Rola ID" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <!-- Botones centrados -->
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Aldatu Rola" onAction="#aldatuRola" style="-fx-background-color: #FFD700; -fx-text-fill: black;"/>
+    </HBox>
+
+</VBox>

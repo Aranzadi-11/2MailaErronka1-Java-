@@ -1,0 +1,58 @@
+/* Fondo general */
+.root {
+    -fx-background-color: #f5f5f5; /* gris claro */
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Títulos */
+.label {
+    -fx-font-weight: bold;
+}
+
+/* Labels específicos de encabezado */
+.label-header {
+    -fx-font-size: 18px;
+    -fx-text-fill: #333333;
+}
+
+.label-subheader {
+    -fx-font-size: 16px;
+    -fx-text-fill: #555555;
+}
+
+/* Botones dorados */
+.button {
+    -fx-background-color: #FFD700;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #FFC300; /* un poco más oscuro al pasar el ratón */
+}
+
+/* Campos de texto */
+.text-field, .password-field {
+    -fx-padding: 5px;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+/* Tabla */
+.table-view {
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #FFD700;
+}
+
+.table-view .column-header, .table-view .column-header .label {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
