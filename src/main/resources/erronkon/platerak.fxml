@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="erronkon.PlaterakController"
+      prefHeight="700" prefWidth="1000">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="PLATEREN KUDEAKETA"
+           style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <TableView fx:id="tableView" VBox.vgrow="ALWAYS" style="-fx-font-size: 14px;">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="60">
+                <cellValueFactory>
+                    <PropertyValueFactory property="id" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="izenaColumn" text="IZENA" prefWidth="200">
+                <cellValueFactory>
+                    <PropertyValueFactory property="izena" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="deskribapenaColumn" text="DESKRIBAPENA" prefWidth="300">
+                <cellValueFactory>
+                    <PropertyValueFactory property="deskribapena" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="prezioaColumn" text="PREZIOA (€)" prefWidth="100">
+                <cellValueFactory>
+                    <PropertyValueFactory property="prezioa" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="kategoriaColumn" text="KATEGORIA ID" prefWidth="120">
+                <cellValueFactory>
+                    <PropertyValueFactory property="kategoriaId" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="erabilgarriColumn" text="ERABILGARRI" prefWidth="100">
+                <cellValueFactory>
+                    <PropertyValueFactory property="erabilgarri" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="sortzeDataColumn" text="SORTZE DATA" prefWidth="150">
+                <cellValueFactory>
+                    <PropertyValueFactory property="sortzeData" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+    <GridPane hgap="15" vgap="15" style="-fx-padding: 20 0 0 0;">
+        <Label text="Izena:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
+        <TextField fx:id="izenaField" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                   prefWidth="300" prefHeight="35"/>
+
+        <Label text="Deskribapena:" GridPane.rowIndex="0" GridPane.columnIndex="2"
+               style="-fx-font-weight: bold;"/>
+        <TextArea fx:id="deskribapenaField" GridPane.rowIndex="0" GridPane.columnIndex="3"
+                  prefWidth="300" prefHeight="80" wrapText="true"/>
+
+        <Label text="Prezioa (€):" GridPane.rowIndex="1" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
+        <TextField fx:id="prezioaField" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                   prefWidth="300" prefHeight="35"/>
+
+        <Label text="Kategoria:" GridPane.rowIndex="1" GridPane.columnIndex="2"
+               style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="kategoriaComboBox" GridPane.rowIndex="1" GridPane.columnIndex="3"
+                  prefWidth="300" prefHeight="35"/>
+
+        <Label text="Erabilgarri:" GridPane.rowIndex="2" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="erabilgarriComboBox" GridPane.rowIndex="2" GridPane.columnIndex="1"
+                  prefWidth="300" prefHeight="35"/>
+
+        <Label text="Irudia URL:" GridPane.rowIndex="2" GridPane.columnIndex="2"
+               style="-fx-font-weight: bold;"/>
+        <TextField fx:id="irudiaField" GridPane.rowIndex="2" GridPane.columnIndex="3"
+                   prefWidth="300" prefHeight="35"/>
+    </GridPane>
+
+    <HBox spacing="20" style="-fx-padding: 30 0 0 0; -fx-alignment: center;">
+        <Button fx:id="gehituBtn" text="GEHITU"
+                onAction="#gehituPlatera"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 120; -fx-pref-height: 40;"/>
+
+        <Button fx:id="editatuBtn" text="EDITATU"
+                onAction="#editatuPlatera"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 120; -fx-pref-height: 40;"/>
+
+        <Button fx:id="ezabatuBtn" text="EZABATU"
+                onAction="#ezabatuPlatera"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 120; -fx-pref-height: 40;"/>
+
+        <Button fx:id="garbituBtn" text="GARBITU"
+                onAction="#garbituEremuak"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 120; -fx-pref-height: 40;"/>
+    </HBox>
+</VBox>

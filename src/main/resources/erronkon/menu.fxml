@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="erronkon.MenuController"
+            prefWidth="800" prefHeight="500">
+
+    <!-- TOP -->
+    <top>
+        <VBox spacing="10" alignment="CENTER" style="-fx-padding: 20;">
+            <ImageView fitHeight="100" preserveRatio="true">
+                <image>
+                    <Image url="@images/ABEJ_logo.png"/>
+                </image>
+            </ImageView>
+
+            <Label text="ABEJ" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+            <Label fx:id="userLabel"/>
+        </VBox>
+    </top>
+
+    <!-- CENTER -->
+    <center>
+        <VBox spacing="15" alignment="CENTER"
+              prefWidth="300">
+
+            <Button text="Langileak kudeatu"
+                    onAction="#kudeatuLangileak"
+                    prefWidth="220"/>
+
+            <Button text="Platerak kudeatu"
+                    onAction="#kudeatuPlaterak"
+                    prefWidth="220"/>
+
+            <Button text="Finantzak kudeatu"
+                    onAction="#kudeatuFinantzak"
+                    prefWidth="220"/>
+
+            <Button text="Stock-a kudeatu"
+                    onAction="#kudeatuStock"
+                    prefWidth="220"/>
+        </VBox>
+
+    </center>
+
+</BorderPane>

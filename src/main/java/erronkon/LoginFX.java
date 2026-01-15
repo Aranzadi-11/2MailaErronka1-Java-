@@ -9,12 +9,12 @@ import javafx.stage.Stage;
 public class LoginFX extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/erronkon/login.fxml"));
-        stage.setTitle("Login");
-        stage.setScene(new Scene(root));
-        stage.setResizable(false);
-        stage.show();
+    public void start(Stage primaryStage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/erronkon/login.fxml"));
+        Parent root = loader.load();
+        primaryStage.setTitle("Login");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 
     public static void main(String[] args) {

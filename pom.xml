@@ -33,6 +33,20 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
+
+        <!-- Gson for JSON parsing -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20230227</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -47,6 +61,7 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+
             <!-- JavaFX Maven plugin -->
             <plugin>
                 <groupId>org.openjfx</groupId>

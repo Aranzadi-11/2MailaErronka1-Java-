@@ -19,7 +19,7 @@
     <!-- Logo -->
     <ImageView fitWidth="200" fitHeight="200" preserveRatio="true">
         <image>
-            <Image url="@images/ABEJ_logo.png"/>
+            <Image url="@../../../../../../Downloads/2MailaErronka1-Java--main/src/main/resources/erronkon/images/ABEJ_logo.png"/>
         </image>
     </ImageView>
 

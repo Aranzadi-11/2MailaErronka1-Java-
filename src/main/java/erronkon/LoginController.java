@@ -8,11 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class LoginController {
 
@@ -25,67 +26,93 @@ public class LoginController {
     @FXML
     private Label infoLabel;
 
-    private int saioak = 3;
+    private int saiakerak = 3;
+
+    private static final String API_URL =
+            "https://localhost:7236/api/Langileak/Login";
 
     @FXML
     private void sartu() {
-        String erabiltzailea = erabiltzaileaField.getText();
-        String pasahitza = pasahitzaField.getText();
 
-        try (Connection konexioa = DBKonexioa.lortuKonexioa()) {
+        String erabiltzailea = erabiltzaileaField.getText().trim();
+        String pasahitza = pasahitzaField.getText().trim();
 
-            if (konexioa == null) {
-                infoLabel.setText("Ezin da DB-ra konektatu.");
-                return;
-            }
+        if (erabiltzailea.isEmpty() || pasahitza.isEmpty()) {
+            infoLabel.setStyle("-fx-text-fill: red;");
+            infoLabel.setText("Mesedez, sartu erabiltzailea eta pasahitza.");
+            return;
+        }
 
-            String sql = "SELECT rola_id FROM langileak WHERE erabiltzailea = ? AND pasahitza = ?";
-            PreparedStatement ps = konexioa.prepareStatement(sql);
-            ps.setString(1, erabiltzailea);
-            ps.setString(2, pasahitza);
-            ResultSet rs = ps.executeQuery();
+        try {
+            // JSON para la API
+            JSONObject json = new JSONObject();
+            json.put("erabiltzailea", erabiltzailea);
+            json.put("pasahitza", pasahitza);
 
-            if (rs.next()) {
-                int rola = rs.getInt("rola_id");
+            // Cliente HTTP común (SSL ignorado)
+            HttpClient client = ApiClient.getClient();
 
-                // Roles admin (3) y jefe (4) abren la ventana gerente
-                if (rola == 3 || rola == 4) {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(API_URL))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(json.toString()))
+                    .build();
+
+            HttpResponse<String> response =
+                    client.send(request, HttpResponse.BodyHandlers.ofString());
+
+
+            if (response.statusCode() == 200) {
+
+                JSONObject respJson = new JSONObject(response.body());
+
+                int rolaId = respJson.getInt("rolaId");
+
+                // SOLO admin (3) o jefe (4)
+                if (rolaId == 3 || rolaId == 4) {
+
+                    // Guardamos sesión
+                    Session.setId(respJson.getInt("id"));
+                    Session.setIzena(respJson.getString("izena"));
+                    Session.setErabiltzailea(respJson.getString("erabiltzailea"));
+                    Session.setRolaId(rolaId);
+
                     infoLabel.setStyle("-fx-text-fill: green;");
                     infoLabel.setText("Login zuzena!");
 
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/erronkon/gerente.fxml"));
-                        Parent root = loader.load();
+                    // Abrimos menú principal
+                    FXMLLoader loader = new FXMLLoader(
+                            getClass().getResource("/erronkon/menu.fxml")
+                    );
+                    Parent root = loader.load();
 
-                        Stage s = new Stage();
-                        s.setTitle("Kudeaketa - Gestión de empleados");
-                        s.setScene(new Scene(root));
-                        s.show();
+                    Stage stage = new Stage();
+                    stage.setTitle("AB EJ - Kudeaketa Sistema");
+                    stage.setScene(new Scene(root));
+                    stage.show();
 
-                        // Ocultar ventana de login
-                        erabiltzaileaField.getScene().getWindow().hide();
-
-                    } catch (Exception ex) {
-                        ex.printStackTrace(); // Muestra errores en consola
-                        infoLabel.setText("Errorea: " + ex.getMessage());
-                    }
+                    // Cerramos login
+                    erabiltzaileaField.getScene().getWindow().hide();
 
                 } else {
+                    infoLabel.setStyle("-fx-text-fill: red;");
                     infoLabel.setText("Ez duzu baimenik. Adminarekin hitz egin.");
                 }
 
             } else {
-                saioak--;
-                infoLabel.setText("Datu okerrak. Saioak: " + saioak);
+                saiakerak--;
+                infoLabel.setStyle("-fx-text-fill: red;");
+                infoLabel.setText("Datu okerrak. Saiakerak: " + saiakerak);
 
-                if (saioak <= 0) {
-                    infoLabel.setText("Saio gehiegi. Itxiko da...");
+                if (saiakerak <= 0) {
+                    infoLabel.setText("Saiakera gehiegi. Itxiko da...");
                     System.exit(0);
                 }
             }
 
-        } catch (SQLException e) {
-            infoLabel.setText("Errorea: " + e.getMessage());
+        } catch (Exception e) {
+            infoLabel.setStyle("-fx-text-fill: red;");
+            infoLabel.setText("Errorea zerbitzariarekin.");
             e.printStackTrace();
         }
     }
