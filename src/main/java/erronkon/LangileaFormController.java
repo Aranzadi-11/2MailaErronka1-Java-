@@ -27,15 +27,12 @@ public class LangileaFormController {
 
     @FXML
     private void initialize() {
-        // Combo box para activo
         cbAktibo.setItems(FXCollections.observableArrayList("Bai", "Ez"));
-        // Combo box para rol
         cbRola.setItems(FXCollections.observableArrayList("1 - sukaldaria", "2 - zerbitzaria", "3 - admin", "4 - jefea"));
 
         kargatuLangileak();
     }
 
-    // Método público para actualizar la tabla
     public void kargatuLangileak() {
         try {
             HttpResponse<String> response = ApiService.get(LangileaDAO.BASE_URL);
@@ -67,7 +64,7 @@ public class LangileaFormController {
             HttpResponse<String> response = ApiService.post(LangileaDAO.BASE_URL, gson.toJson(l));
             String result = response.body();
 
-            kargatuLangileak(); // refresca la tabla
+            kargatuLangileak();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -128,7 +125,7 @@ public class LangileaFormController {
         }
     }
 
-    // Método auxiliar para extraer el ID de rol del string del ComboBox
+
     private int extractRolaId(String rolString) {
         if (rolString == null || rolString.isEmpty()) return 1;
         return Integer.parseInt(rolString.split(" ")[0]);

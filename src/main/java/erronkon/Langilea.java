@@ -15,7 +15,6 @@ public class Langilea {
 
     public Langilea() {}
 
-    // Constructor con el nombre completo
     public Langilea(String izenaOsoa) {
         this.izena.set(izenaOsoa);
     }
@@ -25,7 +24,6 @@ public class Langilea {
         this.izena.set(izenaOsoa);
     }
 
-    // --- Getters y Setters ---
     public int getId() { return id.get(); }
     public void setId(int id) { this.id.set(id); }
     public IntegerProperty idProperty() { return id; }

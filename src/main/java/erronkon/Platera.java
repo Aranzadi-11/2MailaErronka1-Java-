@@ -28,7 +28,6 @@ public class Platera {
         this.prezioa.set(prezioa);
     }
 
-    // Getters y Setters
     public int getId() { return id.get(); }
     public void setId(int id) { this.id.set(id); }
     public IntegerProperty idProperty() { return id; }

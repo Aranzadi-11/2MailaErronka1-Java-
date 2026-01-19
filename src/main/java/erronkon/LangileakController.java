@@ -68,7 +68,6 @@ public class LangileakController {
 
     @FXML
     public void initialize() {
-        // Configurar las columnas
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         izenaColumn.setCellValueFactory(new PropertyValueFactory<>("izena"));
         erabiltzaileaColumn.setCellValueFactory(new PropertyValueFactory<>("erabiltzailea"));
@@ -76,20 +75,16 @@ public class LangileakController {
         rolaColumn.setCellValueFactory(new PropertyValueFactory<>("rolaId"));
         erregistroColumn.setCellValueFactory(new PropertyValueFactory<>("erregistroData"));
 
-        // Cargar opciones para los ComboBox
         cargarComboBoxes();
 
-        // Cargar datos desde la API
         recargarLangileak();
 
-        // Manejar selección de la tabla
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 cargarDatosFormulario(newSelection);
             }
         });
 
-        // Asignar acciones a los botones
         gehituBtn.setOnAction(e -> gehituLangilea());
         ezabatuBtn.setOnAction(e -> ezabatuLangilea());
         editatuBtn.setOnAction(e -> editatuLangilea());
@@ -97,7 +92,6 @@ public class LangileakController {
     }
 
     private void cargarComboBoxes() {
-        // Opciones para Rola ID
         ObservableList<String> rolak = FXCollections.observableArrayList();
         rolak.add("1 - sukaldaria");
         rolak.add("2 - zerbitzaria");
@@ -105,7 +99,6 @@ public class LangileakController {
         rolak.add("4 - jefea");
         rolaComboBox.setItems(rolak);
 
-        // Opciones para Aktibo
         ObservableList<String> aktiboak = FXCollections.observableArrayList();
         aktiboak.add("Bai");
         aktiboak.add("Ez");
@@ -123,7 +116,6 @@ public class LangileakController {
         erabiltzaileaField.setText(langilea.getErabiltzailea());
         pasahitzaField.setText(langilea.getPasahitza());
 
-        // Establecer el valor del ComboBox de rol
         int rolaId = langilea.getRolaId();
         String rolaString = rolaId + " - " + getRolaIzena(rolaId);
         rolaComboBox.setValue(rolaString);
@@ -154,10 +146,8 @@ public class LangileakController {
             return;
         }
 
-        // Obtener el ID del rol del string seleccionado
         int rolaId = Integer.parseInt(rolaString.split(" ")[0]);
 
-        // Crear nuevo langilea
         Langilea l = new Langilea();
         l.setIzena(izena);
         l.setErabiltzailea(erabiltzailea);
@@ -185,16 +175,13 @@ public class LangileakController {
             return;
         }
 
-        // Confirmar antes de eliminar
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle("Berrespena");
         confirm.setHeaderText(null);
         confirm.setContentText("Ziur zaude '" + l.getIzena() + "' langilea ezabatu nahi duzula?");
 
-        // Mostrar el diálogo y esperar a que el usuario pulse un botón
         java.util.Optional<ButtonType> result = confirm.showAndWait();
 
-        // Si el usuario pulsa OK (aceptar)
         if (result.isPresent() && result.get() == ButtonType.OK) {
             boolean ok = LangileaDAO.delete(l.getId());
             if (ok) {

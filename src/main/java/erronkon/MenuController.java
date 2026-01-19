@@ -24,12 +24,12 @@ public class MenuController {
 
     @FXML
     private void kudeatuLangileak() throws IOException {
-        irekiLeihoa("/erronkon/langileak.fxml", "Langileen Kudeaketa", true);
+        irekiLeihoa("/erronkon/langileak.fxml", "Langileak Kudeaketa", true);
     }
 
     @FXML
     private void kudeatuPlaterak() throws IOException {
-        irekiLeihoa("/erronkon/platerak.fxml", "Plateren Kudeaketa", true);
+        irekiLeihoa("/erronkon/platerak.fxml", "Platerak Kudeaketa", true);
     }
 
     @FXML
@@ -39,7 +39,12 @@ public class MenuController {
 
     @FXML
     private void kudeatuStock() throws IOException {
-        irekiLeihoa("/erronkon/stock.fxml", "Stock-a Kudeaketa", true);
+        irekiLeihoa("/erronkon/inbentarioa.fxml", "Stock-a Kudeaketa", true);
+    }
+
+    @FXML
+    private void kudeatuPlateraOsagaiak() throws IOException {
+        irekiLeihoa("/erronkon/plateraOsagaiak.fxml", "PlateraOsagaiak Kudeaketa", true);
     }
 
     private void irekiLeihoa(String fxmlPath, String titulua, boolean maximized) throws IOException {
@@ -51,7 +56,7 @@ public class MenuController {
         stage.setScene(new Scene(root));
 
         if (maximized) {
-            stage.setMaximized(true); // Ventana maximizada (casi pantalla completa)
+            stage.setMaximized(true);
         }
 
         stage.show();

@@ -8,7 +8,6 @@
             fx:controller="erronkon.MenuController"
             prefWidth="800" prefHeight="500">
 
-    <!-- TOP -->
     <top>
         <VBox spacing="10" alignment="CENTER" style="-fx-padding: 20;">
             <ImageView fitHeight="100" preserveRatio="true">
@@ -22,7 +21,6 @@
         </VBox>
     </top>
 
-    <!-- CENTER -->
     <center>
         <VBox spacing="15" alignment="CENTER"
               prefWidth="300">
@@ -35,6 +33,10 @@
                     onAction="#kudeatuPlaterak"
                     prefWidth="220"/>
 
+            <Button text="Platera-osagaiak"
+                    onAction="#kudeatuPlateraOsagaiak"
+                    prefWidth="220"/>
+
             <Button text="Finantzak kudeatu"
                     onAction="#kudeatuFinantzak"
                     prefWidth="220"/>
@@ -43,7 +45,5 @@
                     onAction="#kudeatuStock"
                     prefWidth="220"/>
         </VBox>
-
     </center>
-
 </BorderPane>

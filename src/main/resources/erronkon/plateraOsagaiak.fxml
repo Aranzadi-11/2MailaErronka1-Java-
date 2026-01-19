@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="erronkon.PlateraOsagaiakController"
+      prefHeight="700" prefWidth="1100" spacing="10">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="PLATEREN OSAAGIAK KUDEAKETA"
+           style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <TableView fx:id="tableView" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="plateraColumn" text="PLATERA" prefWidth="200"/>
+            <TableColumn fx:id="osagaiaColumn" text="OSAGAIA" prefWidth="200"/>
+            <TableColumn fx:id="kantitateaColumn" text="KANTITATEA" prefWidth="100"/>
+            <TableColumn fx:id="neurriaColumn" text="NEURRIA" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <GridPane hgap="15" vgap="15" style="-fx-padding: 20 0 0 0;">
+        <Label text="Platera:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="plateraComboBox" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                  prefWidth="250" prefHeight="35"/>
+
+        <Label text="Osagaia:" GridPane.rowIndex="0" GridPane.columnIndex="2"
+               style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="osagaiaComboBox" GridPane.rowIndex="0" GridPane.columnIndex="3"
+                  prefWidth="250" prefHeight="35"/>
+
+        <Label text="Kantitatea:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
+        <TextField fx:id="kantitateaField" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                   prefWidth="250" prefHeight="35"/>
+
+        <Label text="Neurria:" GridPane.rowIndex="1" GridPane.columnIndex="2"
+               style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="neurriaComboBox" GridPane.rowIndex="1" GridPane.columnIndex="3"
+                  prefWidth="250" prefHeight="35"/>
+    </GridPane>
+
+    <HBox spacing="20" style="-fx-padding: 30 0 0 0; -fx-alignment: center;">
+        <Button fx:id="gehituBtn" text="GEHITU"
+                onAction="#gehituPlateraOsagaia"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 120; -fx-pref-height: 40;"/>
+
+        <Button fx:id="editatuBtn" text="EDITATU"
+                onAction="#editatuPlateraOsagaia"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 120; -fx-pref-height: 40;"/>
+
+        <Button fx:id="ezabatuBtn" text="EZABATU"
+                onAction="#ezabatuPlateraOsagaia"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 120; -fx-pref-height: 40;"/>
+
+        <Button fx:id="garbituBtn" text="GARBITU"
+                onAction="#garbituEremuak"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 120; -fx-pref-height: 40;"/>
+    </HBox>
+</VBox>

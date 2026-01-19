@@ -78,7 +78,6 @@ public class PlaterakController {
 
     @FXML
     public void initialize() {
-        // Configurar las columnas con los nombres correctos (camelCase para JavaFX)
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         izenaColumn.setCellValueFactory(new PropertyValueFactory<>("izena"));
         deskribapenaColumn.setCellValueFactory(new PropertyValueFactory<>("deskribapena"));
@@ -87,20 +86,16 @@ public class PlaterakController {
         erabilgarriColumn.setCellValueFactory(new PropertyValueFactory<>("erabilgarri"));
         sortzeDataColumn.setCellValueFactory(new PropertyValueFactory<>("sortzeData"));
 
-        // Cargar opciones para los ComboBox
         cargarComboBoxes();
 
-        // Cargar datos desde la API
         recargarPlaterak();
 
-        // Manejar selección de la tabla
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 cargarDatosFormulario(newSelection);
             }
         });
 
-        // Asignar acciones a los botones
         gehituBtn.setOnAction(e -> gehituPlatera());
         ezabatuBtn.setOnAction(e -> ezabatuPlatera());
         editatuBtn.setOnAction(e -> editatuPlatera());
@@ -108,7 +103,6 @@ public class PlaterakController {
     }
 
     private void cargarComboBoxes() {
-        // Opciones para Kategoria ID
         ObservableList<String> kategoriak = FXCollections.observableArrayList();
         kategoriak.add("1 - Lehenengo platerak");
         kategoriak.add("2 - Bigarren platerak");
@@ -116,7 +110,6 @@ public class PlaterakController {
         kategoriak.add("4 - Edariak");
         kategoriaComboBox.setItems(kategoriak);
 
-        // Opciones para Erabilgarri (Sí/No)
         ObservableList<String> erabilgarriak = FXCollections.observableArrayList();
         erabilgarriak.add("Bai");
         erabilgarriak.add("Ez");
@@ -135,7 +128,6 @@ public class PlaterakController {
         prezioaField.setText(String.format("%.2f", platera.getPrezioa()));
         irudiaField.setText(platera.getIrudia());
 
-        // Establecer el valor del ComboBox de kategoria
         int kategoriaId = platera.getKategoriaId();
         String kategoriaString = kategoriaId + " - " + getKategoriaIzena(kategoriaId);
         kategoriaComboBox.setValue(kategoriaString);
@@ -162,7 +154,6 @@ public class PlaterakController {
         String kategoriaString = kategoriaComboBox.getValue();
         String erabilgarri = erabilgarriComboBox.getValue();
 
-        // Validaciones
         if (izena.isEmpty() || deskribapena.isEmpty() || prezioaStr.isEmpty() ||
                 kategoriaString == null || erabilgarri == null) {
             alerta("Error", "Datu guztiak bete behar dira (irudia aukerakoa da)");
@@ -181,10 +172,8 @@ public class PlaterakController {
             return;
         }
 
-        // Obtener el ID de la kategoria del string seleccionado
         int kategoriaId = Integer.parseInt(kategoriaString.split(" ")[0]);
 
-        // Crear nuevo platera
         Platera p = new Platera();
         p.setIzena(izena);
         p.setDeskribapena(deskribapena);
@@ -213,25 +202,20 @@ public class PlaterakController {
             return;
         }
 
-        // Confirmar antes de eliminar
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle("Berrespena");
         confirm.setHeaderText(null);
         confirm.setContentText("Ziur zaude '" + p.getIzena() + "' platera ezabatu nahi duzula?");
 
-        // Configurar botones personalizados
         ButtonType baiBotoia = new ButtonType("Bai");
         ButtonType ezBotoia = new ButtonType("Ez");
         confirm.getButtonTypes().setAll(baiBotoia, ezBotoia);
 
-        // Mostrar el diálogo y esperar respuesta
         Optional<ButtonType> emaitza = confirm.showAndWait();
 
-        // Si el usuario presiona "Bai"
         if (emaitza.isPresent() && emaitza.get() == baiBotoia) {
             boolean ok = PlateraDAO.delete(p.getId());
             if (ok) {
-                // Refrescar toda la lista desde la API
                 recargarPlaterak();
                 garbituEremuak();
                 alerta("Arrakasta", "Platera ondo ezabatu da!");
@@ -239,7 +223,6 @@ public class PlaterakController {
                 alerta("Error", "Platera ezin izan da ezabatu. Ba al dago konexioa APIarekin?");
             }
         }
-        // Si el usuario presiona "Ez", no hacer nada
     }
 
     @FXML

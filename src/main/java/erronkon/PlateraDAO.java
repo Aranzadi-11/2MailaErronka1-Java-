@@ -64,11 +64,11 @@ public class PlateraDAO {
         }
     }
 
-    // Método robusto que maneja diferentes formatos de nombres
+
     private static Platera jsonToPlatera(JSONObject obj) {
         Platera p = new Platera();
 
-        // Intenta obtener los valores en diferentes formatos
+
         p.setId(getIntFromJson(obj, "id", "Id"));
         p.setIzena(getStringFromJson(obj, "izena", "Izena", ""));
         p.setDeskribapena(getStringFromJson(obj, "deskribapena", "Deskribapena", ""));
@@ -81,7 +81,7 @@ public class PlateraDAO {
         return p;
     }
 
-    // Métodos auxiliares para manejar múltiples formatos
+
     private static int getIntFromJson(JSONObject obj, String... keys) {
         for (String key : keys) {
             if (obj.has(key)) {
@@ -123,7 +123,7 @@ public class PlateraDAO {
         return 0.0;
     }
 
-    // Convierte Platera a JSON con PascalCase (formato .NET)
+
     private static JSONObject plateraToJson(Platera p) {
         JSONObject obj = new JSONObject();
         obj.put("Id", p.getId());

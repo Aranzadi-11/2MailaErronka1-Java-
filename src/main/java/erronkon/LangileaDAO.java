@@ -95,7 +95,7 @@ public class LangileaDAO {
         }
     }
 
-    // Métodos auxiliares
+
     private static Langilea jsonToLangilea(JSONObject obj) {
         Langilea l = new Langilea();
         l.setId(obj.getInt("id"));

@@ -13,8 +13,6 @@
         <Insets top="20" bottom="20" left="20" right="20"/>
     </padding>
 
-    <!-- Logo -->
-    <!-- Logo -->
     <ImageView fitWidth="150" fitHeight="150" preserveRatio="true">
         <image>
             <Image url="@images/ABEJ_logo.png"/>
