@@ -1,4 +1,4 @@
-package erronkon;
+package erronkon.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

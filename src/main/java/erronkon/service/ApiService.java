@@ -1,4 +1,4 @@
-package erronkon;
+package erronkon.service;
 
 import java.net.URI;
 import java.net.http.HttpClient;

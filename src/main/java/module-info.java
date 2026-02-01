@@ -1,20 +1,19 @@
 module erronkon {
-    // JavaFX
     requires javafx.controls;
     requires javafx.fxml;
-
-    // HTTP client
     requires java.net.http;
-
-    // Librerías externas
-    requires org.json;
     requires com.google.gson;
+    requires org.json;
+    requires java.sql;
 
-    // Abrir paquetes a JavaFX para FXML
-    opens erronkon to javafx.fxml, com.google.gson;
+    exports erronkon.ui;
 
-    // Abrir paquetes a Gson para reflexión
+    opens erronkon.controller to javafx.fxml;
 
-    // Exportar el paquete principal
-    exports erronkon;
+    opens erronkon.model to com.google.gson, javafx.base;
+    opens erronkon.dao to com.google.gson;
+    opens erronkon.service to com.google.gson;
+    opens erronkon.client to com.google.gson;
+    opens erronkon.session to com.google.gson;
+
 }

@@ -7,14 +7,12 @@
 <?import javafx.geometry.Insets?>
 
 <VBox spacing="15" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="erronkon.LoginController"
+      fx:controller="erronkon.controller.LoginController"
       prefWidth="350" prefHeight="400">
     <padding>
         <Insets top="20" bottom="20" left="20" right="20"/>
     </padding>
 
-    <!-- Logo -->
-    <!-- Logo -->
     <ImageView fitWidth="150" fitHeight="150" preserveRatio="true">
         <image>
             <Image url="@images/ABEJ_logo.png"/>

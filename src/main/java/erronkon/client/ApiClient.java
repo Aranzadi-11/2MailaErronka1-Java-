@@ -1,4 +1,4 @@
-package erronkon;
+package erronkon.client;
 
 import javax.net.ssl.*;
 import java.net.http.HttpClient;

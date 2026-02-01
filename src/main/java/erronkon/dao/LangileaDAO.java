@@ -1,8 +1,11 @@
-package erronkon;
+package erronkon.dao;
 
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
+
+import erronkon.model.Langilea;
+import erronkon.service.ApiService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -95,7 +98,7 @@ public class LangileaDAO {
         }
     }
 
-    // Métodos auxiliares
+
     private static Langilea jsonToLangilea(JSONObject obj) {
         Langilea l = new Langilea();
         l.setId(obj.getInt("id"));

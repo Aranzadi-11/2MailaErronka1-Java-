@@ -1,4 +1,4 @@
-package erronkon;
+package erronkon.session;
 
 public class Session {
 

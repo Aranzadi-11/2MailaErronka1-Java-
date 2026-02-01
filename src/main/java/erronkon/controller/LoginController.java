@@ -1,5 +1,7 @@
-package erronkon;
+package erronkon.controller;
 
+import erronkon.session.Session;
+import erronkon.client.ApiClient;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -44,12 +46,10 @@ public class LoginController {
         }
 
         try {
-            // JSON para la API
             JSONObject json = new JSONObject();
             json.put("erabiltzailea", erabiltzailea);
             json.put("pasahitza", pasahitza);
 
-            // Cliente HTTP común (SSL ignorado)
             HttpClient client = ApiClient.getClient();
 
             HttpRequest request = HttpRequest.newBuilder()
@@ -68,10 +68,8 @@ public class LoginController {
 
                 int rolaId = respJson.getInt("rolaId");
 
-                // SOLO admin (3) o jefe (4)
                 if (rolaId == 3 || rolaId == 4) {
 
-                    // Guardamos sesión
                     Session.setId(respJson.getInt("id"));
                     Session.setIzena(respJson.getString("izena"));
                     Session.setErabiltzailea(respJson.getString("erabiltzailea"));
@@ -80,7 +78,6 @@ public class LoginController {
                     infoLabel.setStyle("-fx-text-fill: green;");
                     infoLabel.setText("Login zuzena!");
 
-                    // Abrimos menú principal
                     FXMLLoader loader = new FXMLLoader(
                             getClass().getResource("/erronkon/menu.fxml")
                     );
@@ -91,7 +88,6 @@ public class LoginController {
                     stage.setScene(new Scene(root));
                     stage.show();
 
-                    // Cerramos login
                     erabiltzaileaField.getScene().getWindow().hide();
 
                 } else {
